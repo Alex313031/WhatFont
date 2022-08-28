@@ -1,0 +1,45 @@
+{
+  "name": "WhatFont",
+  "short_name": "WhatFont",
+  "version": "2.1.1",
+  "version_name": "2.1.1",
+  "offline_enabled": true,
+  "manifest_version": 2,
+  "description": "Chromium extension to identify fonts on web pages.",
+  "author": "Alex313031",
+  "homepage_url": "https://github.com/Alex313031/WhatFont",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png",
+    "128": "icons/icon128.png",
+    "256": "icons/icon256.png"
+  },
+  "background": {
+    "page": "background.html"
+  },
+  "content_security_policy": "script-src 'self' https://typekit.com; object-src 'self'",
+  "browser_action": {
+    "default_icon": {
+      "19": "icons/icon19.png",
+      "38": "icons/icon38.png",
+      "76": "icons/icon76.png"
+    },
+    "default_title": "WhatFont Settings"
+  },
+  "content_scripts": [
+      {
+          "matches": ["http://*/*", "https://*/*", "ftp://*/*", "file://*/*"],
+          "js": ["wf_chrome.js", "jquery.min.js", "html2canvas.min.js"]
+      }
+  ],
+  "web_accessible_resources": [
+    "wf.css",
+    "img/tweet.svg"
+  ],
+  "options_page": "option.html",
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*", "ftp://*/*", "file://*/*", "https://typekit.com/", "http://localhost.com/"
+  ]
+}
