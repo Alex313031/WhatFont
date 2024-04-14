@@ -1,45 +1,37 @@
 {
-  "name": "WhatFont",
-  "short_name": "WhatFont",
-  "version": "2.1.1",
-  "version_name": "2.1.1",
+  "name": "WhatFont?",
+  "short_name": "WhatFont?",
+  "version": "3.2.1",
+  "version_name": "3.2.1",
   "offline_enabled": true,
-  "manifest_version": 2,
-  "description": "Chromium extension to identify fonts on web pages.",
+  "manifest_version": 3,
   "author": "Alex313031",
+  "description": "Chromium extension to identify fonts on web pages.",
   "homepage_url": "https://github.com/Alex313031/WhatFont",
-  "icons": {
-    "16": "icons/icon16.png",
-    "32": "icons/icon32.png",
-    "48": "icons/icon48.png",
-    "96": "icons/icon96.png",
-    "128": "icons/icon128.png",
-    "256": "icons/icon256.png"
-  },
   "background": {
-    "page": "background.html"
-  },
-  "content_security_policy": "script-src 'self' https://typekit.com; object-src 'self'",
-  "browser_action": {
-    "default_icon": {
-      "19": "icons/icon19.png",
-      "38": "icons/icon38.png",
-      "76": "icons/icon76.png"
-    },
-    "default_title": "WhatFont Settings"
+    "service_worker": "./background/background.js"
   },
   "content_scripts": [
-      {
-          "matches": ["http://*/*", "https://*/*", "ftp://*/*", "file://*/*"],
-          "js": ["wf_chrome.js", "jquery.min.js", "html2canvas.min.js"]
-      }
+    {
+      "matches": [ "file://*/*" ],
+      "js": [ "./contentScript/index.js" ]
+    }
   ],
-  "web_accessible_resources": [
-    "wf.css",
-    "img/tweet.svg"
-  ],
-  "options_page": "option.html",
-  "permissions": [
-    "tabs", "http://*/*", "https://*/*", "ftp://*/*", "file://*/*", "https://typekit.com/", "http://localhost.com/"
-  ]
+  "action": {
+    "default_icon": {
+      "19": "./icons/icon19.png",
+      "38": "./icons/icon38.png",
+      "76": "./icons/icon76.png"
+    }
+  },
+  "permissions": [ "activeTab", "scripting" ],
+  "host_permissions": [ "http://*/*", "https://*/*", "ftp://*/*", "file://*/*" ],
+  "icons": {
+    "16": "./icons/icon16.png",
+    "32": "./icons/icon32.png",
+    "48": "./icons/icon48.png",
+    "96": "./icons/icon96.png",
+    "128": "./icons/icon128.png",
+    "256": "./icons/icon256.png"
+  }
 }
